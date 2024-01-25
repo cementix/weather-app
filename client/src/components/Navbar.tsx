@@ -1,45 +1,31 @@
 import { MapPinIcon, SunIcon, MoonIcon } from "@heroicons/react/16/solid";
-import { useEffect, useState } from "react";
 
-type Props = {};
+type Props = {
+  onToggleTheme: () => void;
+  theme: string;
+};
 
-function Navbar({}: Props) {
-  const [isThemeDark, setThemeDark] = useState(false);
-  const toggleThemeClasses =
-    "md:size-11 xs:size-7 cursor-pointer dark:text-indigo-50";
-
-  useEffect(() => {
-    if (isThemeDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isThemeDark]);
+function Navbar({ onToggleTheme, theme }: Props) {
+  const toggleThemeClass = "text-primary md:size-11 xs:size-7 cursor-pointer";
 
   return (
-    <nav className="flex justify-between items-center md:mx-40 sm:mx-20 xs:mx-3 pt-2 h-15">
+    <nav className="flex justify-between items-center md:mx-40 sm:mx-20 xs:mx-3 xs:flex-wrap pt-2 h-15">
       <div>
-        <h1 className="xs:text-2xl md:text-3xl dark:text-indigo-50 font-montserrat">
-          WEATHER<span className="text-yellow-500">.CO</span>
+        <h1 className="xs:text-2xl md:text-3xl font-montserrat text-primary">
+          WEATHER<span className="text-accent">.CO</span>
         </h1>
       </div>
-      {isThemeDark ? (
-        <SunIcon
-          onClick={() => setThemeDark(!isThemeDark)}
-          className={toggleThemeClasses}
-        />
+      {theme === "dark" ? (
+        <SunIcon onClick={onToggleTheme} className={toggleThemeClass} />
       ) : (
-        <MoonIcon
-          onClick={() => setThemeDark(!isThemeDark)}
-          className={toggleThemeClasses}
-        />
+        <MoonIcon onClick={onToggleTheme} className={toggleThemeClass} />
       )}
+
       <div className="flex justify-between gap-2 items-center">
-        <MapPinIcon className="md:size-11 xs:size-7 cursor-pointer dark:text-indigo-50" />
+        <MapPinIcon className="md:size-11 xs:size-7 cursor-pointer text-primary" />
         <input
           type="text"
           placeholder="Your city"
-          font-montserrat
           className="xs:h-8 md:h-11 rounded-xl outline-none xs:text-sm md:text-lg pl-3"
         />
       </div>

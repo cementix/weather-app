@@ -2,15 +2,21 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "hsl(var(--color-primary) / <alpha-value>)",
+        bkg: "hsl(var(--color-bkg) / <alpha-value>)",
+        accent: "hsl(var(--color-accent) / <alpha-value>)",
+      },
+    },
     fontFamily: {
       dmsans: ["DM Sans"],
       montserrat: ["Montserrat"],
     },
     screens: {
-      xs: "480px",
+      xs: "180px",
       sm: "768px",
-      md: "1060px",
+      md: "900px",
     },
   },
   plugins: [],

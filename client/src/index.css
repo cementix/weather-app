@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-primary: 210deg 15% 12%;
+    --color-bkg: 210deg 25% 94%;
+    --color-accent: 45deg 100% 50%;
+  }
+  :root[data-theme="dark"] {
+    --color-primary: 210deg 25% 94%;
+    --color-bkg: 210deg 15% 12%;
+    --color-accent: 45deg 100% 50%;
+  }
+}
+
 html,
 body,
 #root,
