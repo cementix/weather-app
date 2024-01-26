@@ -1,0 +1,1 @@
+export const API_URL:string = 'http://api.weatherapi.com/v1/'

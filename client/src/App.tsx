@@ -2,11 +2,17 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "@/components/Navbar.tsx";
 import axios from "axios";
+import { findMyCoordinates } from "@/utils/currentPosition";
+import { API_URL } from "./utils/consts";
+import { Coordinates } from "./utils/types";
 
 function App() {
   const [theme, setTheme] = useState<string>("light");
   const [weatherData, setWeatherData] = useState<number[] | null>(null);
-  const [locationData, setLocationData] = useState<object | null>(null);
+  const [locationData, setLocationData] = useState<Coordinates>({
+    latitude: 0,
+    longitude: 0,
+  });
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -19,25 +25,18 @@ function App() {
 
   useEffect(() => {
     try {
-      function findMyCoordinates() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              setLocationData({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-              });
-              console.log(locationData);
-            },
-            (err) => {
-              alert(err.message);
-            }
+      findMyCoordinates(setLocationData);
+      if (locationData) {
+        async function fetchData() {
+          const data = await axios.get(
+            `${API_URL}current.json?key=${
+              import.meta.env.VITE_REACT_APP_API_KEY
+            }&q=${locationData.latitude},${locationData.longitude}`
           );
-        } else {
-          alert("Geolocation is not supported by your browser");
+          console.log(data.data);
         }
+        fetchData();
       }
-      findMyCoordinates();
     } catch (e) {
       console.log(e);
     }
