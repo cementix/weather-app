@@ -1,53 +1,43 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "@/components/Navbar.tsx";
-import axios from "axios";
 import { findMyCoordinates } from "@/utils/currentPosition";
-import { API_URL } from "./utils/consts";
-import { Coordinates } from "./utils/types";
+import { toggleTheme } from "@/utils/toggleTheme";
+import { fetchData } from "@/utils/api";
+import { Coordinates, CurrentWeather } from "@/utils/types";
+import WeatherBlock from "@/components/CurrentWeatherBlock";
 
 function App() {
   const [theme, setTheme] = useState<string>("light");
-  const [weatherData, setWeatherData] = useState<number[] | null>(null);
+  const [weatherData, setWeatherData] = useState<any>();
   const [locationData, setLocationData] = useState<Coordinates>({
     latitude: 0,
     longitude: 0,
   });
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-  };
+  useEffect(() => {
+    findMyCoordinates(setLocationData);
+  }, []);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
-
-  useEffect(() => {
-    try {
-      findMyCoordinates(setLocationData);
-      if (locationData) {
-        async function fetchData() {
-          const data = await axios.get(
-            `${API_URL}current.json?key=${
-              import.meta.env.VITE_REACT_APP_API_KEY
-            }&q=${locationData.latitude},${locationData.longitude}`
-          );
-          console.log(data.data);
-        }
-        fetchData();
+    fetchData(locationData.latitude, locationData.longitude).then(
+      (data: object) => {
+        setWeatherData(data);
+        console.log(weatherData);
       }
-    } catch (e) {
-      console.log(e);
-    }
-  }, [weatherData]);
+    );
+  }, [locationData]);
 
   return (
     <div
       className="bg-bkg h-lvh transition-colors duration-500"
       data-theme="dark"
     >
-      <Navbar onToggleTheme={toggleTheme} theme={theme} />
+      <Navbar
+        onToggleTheme={() => toggleTheme(theme, setTheme)}
+        theme={theme}
+      />
+      <WeatherBlock />
     </div>
   );
 }
