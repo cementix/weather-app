@@ -51,7 +51,7 @@ function App() {
           onToggleTheme={() => toggleTheme(theme, setTheme)}
           theme={theme}
         />
-        <div className="flex flex-col m-auto items-center w-lvw">
+        <div className="flex flex-col m-auto mb-7 items-center w-lvw">
           <h2 className="text-primary font-montserrat text-2xl text-center">
             Current location is{" "}
             <span className="text-accent">
