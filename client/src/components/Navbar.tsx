@@ -9,9 +9,9 @@ function Navbar({ onToggleTheme, theme }: Props) {
   const toggleThemeClass = "text-primary md:size-11 xs:size-7 cursor-pointer";
 
   return (
-    <nav className="flex justify-between items-center md:mx-40 sm:mx-20 xs:mx-3 xs:flex-wrap pt-2 h-15 mb-11">
+    <nav className="flex xs:gap-3 xs:justify-center s:justify-between items-center md:mx-40 sm:mx-20 xs:mx-3 xs:flex-wrap pt-2 h-15 mb-11">
       <div>
-        <h1 className="xs:text-2xl md:text-3xl font-montserrat text-primary">
+        <h1 className="xs:text-2xl xs:hidden s:block md:text-3xl font-montserrat text-primary">
           WEATHER<span className="text-accent">.CO</span>
         </h1>
       </div>

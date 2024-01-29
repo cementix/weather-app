@@ -23,12 +23,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetchData(locationData.latitude, locationData.longitude).then(
-      (data: object) => {
-        setWeatherData(data);
-        setIsLoading(false);
-      }
-    );
+    if (locationData.latitude !== 0 && locationData.longitude !== 0) {
+      fetchData(locationData.latitude, locationData.longitude).then(
+        (data: object) => {
+          setWeatherData(data);
+          setIsLoading(false);
+        }
+      );
+    }
   }, [locationData]);
 
   useEffect(() => {
