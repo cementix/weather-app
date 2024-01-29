@@ -8,7 +8,7 @@
   :root {
     --color-primary: 210deg 15% 12%;
     --color-bkg: 210deg 25% 94%;
-    --color-accent: 45deg 100% 50%;
+    --color-accent: 45deg 100% 40%;
   }
   :root[data-theme="dark"] {
     --color-primary: 210deg 25% 94%;

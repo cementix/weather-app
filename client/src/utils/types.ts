@@ -3,7 +3,7 @@ export type Coordinates = {
   longitude: number;
 };
 
-export type CurrentWeather = {
-  location: object;
-  current: object;
+export type CurrentWeatherData = {
+  location: any;
+  current: any;
 };
