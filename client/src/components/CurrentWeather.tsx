@@ -1,4 +1,5 @@
 import { CurrentWeatherData } from "@/utils/types";
+import { WiStrongWind } from "react-icons/wi";
 
 type Props = {
   weatherData: CurrentWeatherData;
@@ -25,6 +26,10 @@ export default function CurrentWeather({ weatherData }: Props) {
       <p className="text-sm text-nowrap text-primary">
         Last updated: <b>{weatherData.current.last_updated}</b>
       </p>
+      <div>
+        <p>Wind: {weatherData.current.wind_kph}</p>
+        <WiStrongWind />
+      </div>
     </div>
   );
 }

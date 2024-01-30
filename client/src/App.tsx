@@ -8,6 +8,7 @@ import { Coordinates } from "@/utils/types";
 import CurrentWeather from "@/components/CurrentWeather";
 import loading from "@/assets/loading.json";
 import Lottie from "lottie-react";
+import Forecast from "@/components/Forecast";
 
 function App() {
   const [theme, setTheme] = useState<string>("light");
@@ -63,6 +64,7 @@ function App() {
           </h2>
         </div>
         <CurrentWeather weatherData={weatherData} />
+        <Forecast weatherData={weatherData} />
       </div>
     );
   }

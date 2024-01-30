@@ -4,7 +4,7 @@ import { API_KEY, API_URL } from "@/utils/consts";
 export async function fetchData(latitude: number, longitude: number) {
   try {
     const data = await axios.get(
-      `${API_URL}current.json?key=${API_KEY}&q=${latitude},${longitude}`
+      `${API_URL}forecast.json?key=${API_KEY}&q=${latitude},${longitude}`
     );
     return data.data;
   } catch (e: any) {

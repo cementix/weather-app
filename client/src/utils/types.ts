@@ -6,4 +6,5 @@ export type Coordinates = {
 export type CurrentWeatherData = {
   location: any;
   current: any;
+  forecast: any;
 };
