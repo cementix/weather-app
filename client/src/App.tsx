@@ -47,7 +47,7 @@ function App() {
   } else {
     return (
       <div
-        className="bg-bkg h-lvh transition-colors duration-500"
+        className="bg-bkg h-lvh transition-colors duration-500 bg-dotted-pattern"
         data-theme="dark"
       >
         <Navbar
@@ -58,8 +58,7 @@ function App() {
           <h2 className="text-primary font-montserrat text-2xl text-center">
             Current location is{" "}
             <span className="text-accent">
-              {weatherData.location.name}, {weatherData.location.region},{" "}
-              {weatherData.location.country}
+              {weatherData.location.name}, {weatherData.location.region}
             </span>
           </h2>
         </div>

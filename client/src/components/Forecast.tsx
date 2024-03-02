@@ -1,4 +1,3 @@
-import React from "react";
 import HourIcon from "@/components/HourIcon";
 import { CurrentWeatherData } from "@/utils/types";
 

@@ -26,3 +26,7 @@ body,
   font-family: "DM Sans", sans-serif;
   overflow: hidden;
 }
+
+.bg-dotted-pattern {
+  background-image: url('/src/assets/dotted-pattern.png');
+}
