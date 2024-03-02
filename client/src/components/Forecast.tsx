@@ -1,5 +1,6 @@
 import HourIcon from "@/components/HourIcon";
 import { CurrentWeatherData } from "@/utils/types";
+import DayAstro from "./DayAstro";
 
 type Props = {
   weatherData: CurrentWeatherData;
@@ -16,7 +17,8 @@ export default function Forecast({ weatherData }: Props) {
   }
 
   return (
-    <div className="flex gap-3 overflow-x-auto">
+    <div className="flex flex-col gap-3 overflow-x-auto mt-11">
+      <DayAstro forecastData={weatherData.forecast.forecastday[0].astro} />
       {weatherData.forecast.forecastday[0].hour.map(
         (hour: any, index: number) => (
           <HourIcon key={index} />
